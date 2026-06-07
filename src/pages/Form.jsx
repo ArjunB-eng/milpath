@@ -194,7 +194,7 @@ const Form = () => {
                   value={formData.serviceBranch}
                   onChange={handleChange}
                   name="serviceBranch"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-nagy focus:border-navy/50"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-navy focus:border-navy/50"
                 >
                   <option value="">Select your service branch</option>
                   {serviceBranches.map(branch => (
@@ -223,7 +223,7 @@ const Form = () => {
                   {payGrades.map(grade => (
                     <option key={grade} value={grade}>
                       {grade}
-                    )
+                    </option>
                   ))}
                 </select>
                 {errors.payGrade && (
@@ -302,7 +302,7 @@ const Form = () => {
                   {moveTypes.map(type => (
                     <option key={type} value={type}>
                       {type}
-                    )
+                    </option>
                   ))}
                 </select>
               </div>
@@ -322,7 +322,7 @@ const Form = () => {
                   {familySizes.map(size => (
                     <option key={size} value={size}>
                       {size}
-                    )
+                    </option>
                   ))}
                 </select>
               </div>
@@ -357,7 +357,7 @@ const Form = () => {
                   {petsOptions.map(option => (
                     <option key={option} value={option}>
                       {option}
-                    )
+                    </option>
                   ))}
                 </select>
               </div>
@@ -377,7 +377,7 @@ const Form = () => {
                   {spouseEmploymentOptions.map(option => (
                     <option key={option} value={option}>
                       {option}
-                    )
+                    </option>
                   ))}
                 </select>
               </div>
