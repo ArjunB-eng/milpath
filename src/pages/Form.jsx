@@ -21,20 +21,28 @@ const Form = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, target } = e.target;
     setErrors({}); // Clear errors on change
 
-    if (type === 'checkbox') {
+    if (target.type === 'checkbox') {
       setFormData(prev => ({
         ...prev,
-        [name]: checked ?
-          [...prev[name], value] :
-          prev[name].filter(item => item !== value)
+        [name]: target.checked ?
+          [...prev[name], target.value] :
+          prev[name].filter(item => item !== target.value)
+      }));
+    } else if (target.type === 'select-multiple') {
+      // Handle multiple select
+      const selectedOptions = Array.from(target.selectedOptions)
+        .map(option => option.value);
+      setFormData(prev => ({
+        ...prev,
+        [name]: selectedOptions
       }));
     } else {
       setFormData(prev => ({
         ...prev,
-        [name]: value
+        [name]: target.value
       }));
     }
   };
