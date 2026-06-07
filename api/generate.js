@@ -1,4 +1,4 @@
-import { Anthropic } from '@anthropic-ai/sdk';
+import { OpenAI } from 'openai';
 
 export const config = {
   runtime: 'nodejs',
@@ -34,9 +34,9 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Current base and destination base are required' });
     }
 
-    // Initialize Anthropic client
-    const anthropic = new Anthropic({
-      apiKey: process.env.ANTHROPIC_API_KEY, // Make sure to set this in Vercel environment variables
+    // Initialize OpenAI client
+    const openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
     });
 
     // Construct the prompt based on the form data and system prompt
@@ -58,26 +58,24 @@ export default async function handler(req, res) {
     - Additional Notes: ${additionalNotes}
     `;
 
-    // Call the Anthropic API
-    const msg = await anthropic.messages.create({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 2000,
-      system: systemPrompt,
+    // Call the OpenAI API
+    const completion = await openai.chat.completions.create({
+      model: 'gpt-4o-mini',
       messages: [
-        {
-          role: 'user',
-          content: userPrompt,
-        },
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: userPrompt },
       ],
+      max_tokens: 2000,
+      temperature: 0.7,
     });
 
     // Extract the generated text
-    const generatedText = msg.content[0].text;
+    const generatedText = completion.choices[0].message.content;
 
     // Return the generated plan
     return res.status(200).json({ plan: generatedText });
   } catch (error) {
-    console.error('Error calling Anthropic API:', error);
+    console.error('Error calling OpenAI API:', error);
     return res.status(500).json({ error: 'Failed to generate PCS plan' });
   }
 }

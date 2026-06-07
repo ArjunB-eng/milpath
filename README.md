@@ -4,11 +4,11 @@ MilPath is a web application designed to assist military families with PCS (Perm
 
 ## Features
 
-- **Personalized AI-Generated Plans**: Uses Claude AI to create customized PCS relocation guides
+- **Personalized AI-Generated Plans**: Uses OpenAI to create customized PCS relocation guides
 - **Comprehensive Coverage**: Timelines, housing, schools, healthcare, logistics, finances, base resources, and quick wins
 - **Military-Specific Knowledge**: Deep understanding of PCS procedures, allowances, benefits, and installation-specific resources
 - **User-Friendly Interface**: Clean, responsive design built with React and Tailwind CSS
-- **Secure API Integration**: Anthropic API calls handled through Vercel serverless functions to keep API keys hidden
+- **Secure API Integration**: OpenAI API calls handled through Vercel serverless functions to keep API keys hidden
 - **Virginia Installation Focus**: Specialized resources for Fort Gregg-Adams, MCB Quantico, Joint Base Langley-Eustis, Naval Station Norfolk, and NAS Oceana
 
 ## Tech Stack
@@ -17,7 +17,7 @@ MilPath is a web application designed to assist military families with PCS (Perm
 - **Styling**: Tailwind CSS
 - **Icons**: Lucide React
 - **Routing**: React Router DOM
-- **Backend**: Vercel Serverless Functions (for Anthropic API integration)
+- **Backend**: Vercel Serverless Functions (for OpenAI API integration)
 - **Deployment**: Vercel
 
 ## Project Structure
@@ -25,7 +25,7 @@ MilPath is a web application designed to assist military families with PCS (Perm
 ```
 milpath/
 ├── api/
-│   └── generate.js        # Vercel serverless function (proxies Anthropic API)
+│   └── generate.js        # Vercel serverless function (proxies OpenAI API)
 ├── src/
 │   ├── components/
 │   │   ├── Navbar.jsx
@@ -53,7 +53,7 @@ milpath/
 - Node.js (v16 or higher)
 - npm or yarn
 - Vercel account (for deployment)
-- Anthropic API key (for AI features)
+- OpenAI API key (for AI features)
 
 ### Local Development
 
@@ -72,9 +72,9 @@ milpath/
    ```bash
    cp .env.example .env
    ```
-   Then add your Anthropic API key to the `.env` file:
+   Then add your OpenAI API key to the `.env` file:
    ```
-   ANTHROPIC_API_KEY=your_actual_api_key_here
+   OPENAI_API_KEY=your_actual_api_key_here
    ```
 
 4. Start the development server:
@@ -89,8 +89,8 @@ milpath/
 1. Push your code to a GitHub repository
 2. Import the project to Vercel
 3. Configure the environment variable:
-   - Key: `ANTHROPIC_API_KEY`
-   - Value: Your actual Anthropic API key
+   - Key: `OPENAI_API_KEY`
+   - Value: Your actual OpenAI API key
 4. Vercel will automatically detect and run the build command
 
 ## How It Works
@@ -98,7 +98,7 @@ milpath/
 1. Users visit the landing page and click "Get Started"
 2. They fill out a detailed form with their PCS information (service branch, rank, bases, family details, etc.)
 3. Upon submission, the form data is sent to the `/api/generate` Vercel serverless function
-4. The serverless function calls the Anthropic API securely (keeping the API key hidden)
+4. The serverless function calls the OpenAI API securely (keeping the API key hidden)
 5. The AI generates a personalized PCS plan following the required format with specific section headers
 6. The results page displays the plan organized into cards for each section
 7. Users can print, save, or start over with a new plan
@@ -142,5 +142,6 @@ MIT
 ## Acknowledgments
 
 - Built for the 2026 Congressional App Challenge — Virginia's First District (VA-01) · Rep. Robert J. Wittman
-- Powered by Anthropic's Claude AI
+- Powered by OpenAI's GPT-4o-mini
 - Inspired by the challenges faced by military families during PCS relocations
+- Free tier API keys available at [platform.openai.com](https://platform.openai.com)
